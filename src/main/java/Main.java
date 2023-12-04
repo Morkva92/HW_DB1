@@ -58,7 +58,7 @@ public class Main {
     private static void generateRandomData() throws SQLException {
         Random random = new Random();
 
-        // Generate random clients
+
         String insertClientSQL = "INSERT INTO Clients (name, email) VALUES (?, ?)";
         try (PreparedStatement preparedStatement = conn.prepareStatement(insertClientSQL)) {
             for (int i = 0; i < 10; i++) {
@@ -68,13 +68,13 @@ public class Main {
             }
         }
 
-        // Generate random orders
+
         String insertOrderSQL = "INSERT INTO Orders (client_id, product_name, quantity) VALUES (?, ?, ?)";
         try (PreparedStatement preparedStatement = conn.prepareStatement(insertOrderSQL)) {
             for (int i = 0; i < 10; i++) {
-                preparedStatement.setInt(1, random.nextInt(10) + 1); // client_id (1 to 10)
+                preparedStatement.setInt(1, random.nextInt(10) + 1);
                 preparedStatement.setString(2, "Product" + i);
-                preparedStatement.setInt(3, random.nextInt(5) + 1); // quantity (1 to 5)
+                preparedStatement.setInt(3, random.nextInt(5) + 1);
                 preparedStatement.executeUpdate();
             }
         }
